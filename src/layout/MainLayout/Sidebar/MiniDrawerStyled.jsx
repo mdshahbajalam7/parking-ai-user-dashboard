@@ -1,0 +1,57 @@
+/* eslint-disable */
+// material-ui
+import { styled } from '@mui/material/styles';
+import Drawer from '@mui/material/Drawer';
+
+// project imports
+import { drawerWidth } from 'store/constant';
+
+function openedMixin(theme) {
+  return {
+    width: drawerWidth,
+    borderRight: `1px solid ${theme.palette.divider}`,
+    zIndex: 1099,
+    background: theme.palette.background.default,
+    overflow: 'visible',
+    boxShadow: 'none',
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen + 200
+    })
+  };
+}
+
+function closedMixin(theme) {
+  return {
+    borderRight: `1px solid ${theme.palette.divider}`,
+    zIndex: 1099,
+    background: theme.palette.background.default,
+    overflow: 'visible',
+    width: 72,
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen + 200
+    })
+  };
+}
+
+// ==============================|| DRAWER - MINI STYLED ||============================== //
+
+const MiniDrawerStyled = styled(Drawer, { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
+  width: drawerWidth,
+  borderRight: '0px',
+  flexShrink: 0,
+  whiteSpace: 'nowrap',
+  boxSizing: 'border-box',
+  overflow: 'visible',
+  ...(open && {
+    ...openedMixin(theme),
+    '& .MuiDrawer-paper': openedMixin(theme)
+  }),
+  ...(!open && {
+    ...closedMixin(theme),
+    '& .MuiDrawer-paper': closedMixin(theme)
+  })
+}));
+
+export default MiniDrawerStyled;
