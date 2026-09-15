@@ -44,7 +44,7 @@ export default function Header() {
         >
           <LogoSection />
         </Box>
-        <Avatar
+        {/* <Avatar
           variant="rounded"
           sx={{
             cursor: "pointer",
@@ -70,7 +70,7 @@ export default function Header() {
           title="Toggle Sidebar"
         >
           <IconMenu2 stroke={2} size="20px" />
-        </Avatar>
+        </Avatar> */}
       </Box>
 
       {/* spacer */}
